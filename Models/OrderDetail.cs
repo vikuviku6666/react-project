@@ -1,6 +1,8 @@
+using System;
+
 namespace react_project.Models
 {
-    public class OrderDetails
+    public class OrderDetail
     {
         public int Id { get; set; }
         public float Price { get; set; }
