@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
+using Microsoft.EntityFrameworkCore;
+using react_project.Contexts;
+using react_project.Models;
 
 namespace react_project.Controllers
 {
@@ -12,6 +11,39 @@ namespace react_project.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        
+        private readonly ProductContext _context;
+        public ProductController(ProductContext context)
+        {
+           _context = context;
+        }
+        [HttpGet]
+        public async Task<ActionResult> GetProducts()
+        {
+            return Ok(await _context.Products.ToListAsync());
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+
+        public async Task<ActionResult> GetById(int id)
+        {
+            Product found = await _context.Products.FindAsync(id);
+
+            if (found == null)
+            {
+                return NotFound();
+            }
+            return Ok(found);
+        }
+
+        [HttpPost]
+        public async  Task<ActionResult> CreateProduct(Product newProduct)
+        {
+            _context.Products.Add(newProduct);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("CreateProduct", newProduct);
+
+        }
     }
 }

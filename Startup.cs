@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using react_project.Contexts;
 
 namespace react_project
 {
@@ -27,6 +28,7 @@ namespace react_project
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<ProductContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

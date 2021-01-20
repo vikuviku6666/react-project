@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace react_project.Models
 {
@@ -6,9 +7,11 @@ namespace react_project.Models
     {
         public int Id { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Created { get; set; }
 
         public string PaymentMethod { get; set; }
-        public float Total { get; set; }
+        
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
     }
 }
