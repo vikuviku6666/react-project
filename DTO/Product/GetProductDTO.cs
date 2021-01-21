@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace react_project.Dtos.Product
+namespace react_project.DTO.Product
 {
-    public class GetProductDto
+    public class GetProductDTO
     {
         public int Id { get; set; }
 

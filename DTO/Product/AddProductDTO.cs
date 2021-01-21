@@ -1,12 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
-namespace react_project.Dtos.Product
+namespace react_project.DTO.Product
 {
-    public class UpdateProductDto
+    public class AddProductDTO
     {
-        public int Id { get; set; }
+      
 
         [Required]
         public string Name { get; set; }

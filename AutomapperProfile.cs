@@ -1,5 +1,7 @@
 using AutoMapper;
-using react_project.Dtos.Product;
+
+using react_project.DTO.Order;
+using react_project.DTO.Product;
 using react_project.Models;
 
 namespace react_project
@@ -8,8 +10,11 @@ namespace react_project
     {
         public AutomapperProfile()
         {
-            CreateMap<Product, GetProductDto>();
-            CreateMap<GetProductDto, Product>();
+            CreateMap<Product, GetProductDTO>();
+            CreateMap<GetProductDTO, Product>();
+
+            CreateMap<Order, GetOrderDTO>();
+            CreateMap<GetOrderDTO, Order>();
         }
         
     }
