@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 using Microsoft.OpenApi.Models;
 using react_project.Contexts;
 
@@ -30,6 +31,13 @@ namespace react_project
 
             services.AddDbContext<ProductContext>();
             services.AddControllers();
+            MapperConfiguration config = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutomapperProfile());
+            });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "react_project", Version = "v1" });

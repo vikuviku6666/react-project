@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using react_project.Contexts;
@@ -12,9 +13,13 @@ namespace react_project.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ProductContext _context;
-        public ProductController(ProductContext context)
+        private readonly IMapper _mapper;
+
+        public ProductController(ProductContext context, IMapper mapper)
         {
-           _context = context;
+            _mapper = mapper;
+            
+            _context = context;
         }
         [HttpGet]
         public async Task<ActionResult> GetProducts()
@@ -37,7 +42,7 @@ namespace react_project.Controllers
         }
 
         [HttpPost]
-        public async  Task<ActionResult> CreateProduct(Product newProduct)
+        public async Task<ActionResult> CreateProduct(Product newProduct)
         {
             _context.Products.Add(newProduct);
             await _context.SaveChangesAsync();
