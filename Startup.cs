@@ -19,6 +19,7 @@ namespace react_project
 {
     public class Startup
     {
+        private String corsPolicyName = "myAwesomePolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,7 +33,15 @@ namespace react_project
 
             services.AddDbContext<ProductContext>();
             services.AddControllers();
-            
+            services.AddCors(options =>
+            {
+                options.AddPolicy(corsPolicyName, builder =>
+                {
+                    builder.WithOrigins("https://localhost:3001", "http://localhost:3000").WithMethods("*");
+                });
+            });
+
+           
             MapperConfiguration config = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutomapperProfile());
@@ -56,6 +65,10 @@ namespace react_project
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "react_project v1"));
             }
+
+           
+            app.UseCors(corsPolicyName);
+               
 
             app.UseHttpsRedirection();
 
