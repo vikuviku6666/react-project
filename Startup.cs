@@ -32,6 +32,7 @@ namespace react_project
 
             services.AddDbContext<ProductContext>();
             services.AddControllers();
+            
             MapperConfiguration config = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutomapperProfile());

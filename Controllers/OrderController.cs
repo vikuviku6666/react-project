@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using react_project.Contexts;
+using react_project.DTO.Order;
 using react_project.Models;
 
 namespace react_project.Controllers
@@ -22,31 +23,23 @@ namespace react_project.Controllers
 
             _context = context;
         }
-        [HttpGet]
+
+
+        [HttpGet("GetAll")]
         public async Task<ActionResult> GetOrders()
         {
-            return Ok(await _context.Orders.Include(b => b.OrderDetails).ToListAsync());
+            List<Order> orders = await _context.Orders.Include(b => b.OrderDetails).ToListAsync();
+
+            List<GetOrderDTO> orderDTOs = _mapper.Map<List<GetOrderDTO>>(orders);
+
+            return Ok(orderDTOs);
         }
 
-/* 
-        [HttpDelete]
-        [Route("{id}")]
-
-        public async Task<ActionResult> DeleteOrder(int id)
-        {
-            Product found = await _context.Orders.First(c => c.Id == id);
-            _context.Orders.Remove(found);
-
-            if (found == null)
-            {
-                return NotFound();
-            }
-            return Ok(found);
-        } */
 
         [HttpPost]
-        public async Task<ActionResult> CreateOrder(Order newOrder)
+        public async Task<ActionResult> CreateOrder(AddOrderDTO newAddOrderDTO)
         {
+            Order newOrder = _mapper.Map<Order>(newAddOrderDTO);
             _context.Orders.Add(newOrder);
             await _context.SaveChangesAsync();
 

@@ -1,6 +1,6 @@
 using AutoMapper;
-
 using react_project.DTO.Order;
+using react_project.DTO.OrderDetails;
 using react_project.DTO.Product;
 using react_project.Models;
 
@@ -15,6 +15,9 @@ namespace react_project
 
             CreateMap<Order, GetOrderDTO>();
             CreateMap<GetOrderDTO, Order>();
+
+            CreateMap<OrderDetail, OrderDetailsDTO>();
+            CreateMap<OrderDetailsDTO, OrderDetail>();
         }
         
     }

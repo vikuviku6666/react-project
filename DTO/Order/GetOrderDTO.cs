@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using react_project.Models;
+using react_project.DTO.OrderDetails;
+
 
 namespace react_project.DTO.Order
 {
@@ -18,6 +18,6 @@ namespace react_project.DTO.Order
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalPrice { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public ICollection<OrderDetailsDTO> OrderDetails { get; set; }
     }
 }
