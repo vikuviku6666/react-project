@@ -11,13 +11,13 @@ namespace react_project
         public AutomapperProfile()
         {
             CreateMap<Product, GetProductDTO>();
-            CreateMap<GetProductDTO, Product>();
+            CreateMap<AddProductDTO, Product>();
 
             CreateMap<Order, GetOrderDTO>();
-            CreateMap<GetOrderDTO, Order>();
+            CreateMap<AddOrderDTO, Order>();
 
             CreateMap<OrderDetail, OrderDetailsDTO>();
-            CreateMap<OrderDetailsDTO, OrderDetail>();
+            CreateMap<AddOrderDetailsDTO, OrderDetail>();
         }
         
     }

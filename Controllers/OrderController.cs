@@ -25,7 +25,7 @@ namespace react_project.Controllers
         }
 
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<ActionResult> GetOrders()
         {
             List<Order> orders = await _context.Orders.Include(b => b.OrderDetails).ToListAsync();
@@ -40,7 +40,9 @@ namespace react_project.Controllers
         public async Task<ActionResult> CreateOrder(AddOrderDTO newAddOrderDTO)
         {
             Order newOrder = _mapper.Map<Order>(newAddOrderDTO);
+
             _context.Orders.Add(newOrder);
+            
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("CreateOrder", newOrder);
