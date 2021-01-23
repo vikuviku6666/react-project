@@ -1,5 +1,7 @@
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace react_project.DTO.Product
 {
@@ -13,6 +15,6 @@ namespace react_project.DTO.Product
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } 
     }
 }
