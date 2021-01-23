@@ -42,7 +42,7 @@ namespace react_project.Controllers
             Order newOrder = _mapper.Map<Order>(newAddOrderDTO);
 
             _context.Orders.Add(newOrder);
-            
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("CreateOrder", newOrder);
@@ -50,14 +50,14 @@ namespace react_project.Controllers
         }
 
         [HttpDelete("{id}")]
-     public async Task<ActionResult> DeleteOrder(int id)
+        public async Task<ActionResult> DeleteOrder(int id)
         {
 
-            Order order =  _context.Orders.Include(b => b.OrderDetails).First(c => c.Id == id);
+            Order order = _context.Orders.Include(b => b.OrderDetails).First(c => c.Id == id);
 
             _context.Orders.Remove(order);
 
-          GetOrderDTO orderDTOs = _mapper.Map<GetOrderDTO>(order);
+            GetOrderDTO orderDTOs = _mapper.Map<GetOrderDTO>(order);
 
             await _context.SaveChangesAsync();
 
