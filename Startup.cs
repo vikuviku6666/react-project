@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 using Microsoft.OpenApi.Models;
 using react_project.Contexts;
-using react_project.Services.ProductService;
+
 
 namespace react_project
 {
@@ -48,7 +48,7 @@ namespace react_project
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
-            //services.AddScoped<IProductService, ProductService>();
+          
 
             services.AddSwaggerGen(c =>
             {
