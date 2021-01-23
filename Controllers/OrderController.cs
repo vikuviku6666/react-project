@@ -53,7 +53,7 @@ namespace react_project.Controllers
      public async Task<ActionResult> DeleteOrder(int id)
         {
 
-            Order order =  _context.Orders.First(c => c.Id == id);
+            Order order =  _context.Orders.Include(b => b.OrderDetails).First(c => c.Id == id);
 
             _context.Orders.Remove(order);
 
