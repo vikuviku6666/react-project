@@ -48,5 +48,24 @@ namespace react_project.Controllers
             return CreatedAtAction("CreateOrder", newOrder);
 
         }
+
+        [HttpDelete("{id}")]
+     public async Task<ActionResult> DeleteOrder(int id)
+        {
+
+            Order order =  _context.Orders.First(c => c.Id == id);
+
+            _context.Orders.Remove(order);
+
+          GetOrderDTO orderDTOs = _mapper.Map<GetOrderDTO>(order);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(orderDTOs);
+
+        }
+
+
+
     }
 }
