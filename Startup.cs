@@ -30,16 +30,10 @@ namespace react_project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy(corsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
             services.AddDbContext<ProductContext>();
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(corsPolicyName, builder =>
-                {
-                    builder.WithOrigins("https://localhost:3001", "http://localhost:3000").WithMethods("*");
-                });
-            });
 
            
             MapperConfiguration config = new MapperConfiguration(mc =>
